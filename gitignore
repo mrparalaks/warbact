@@ -14,8 +14,6 @@ venv.bak/
 *$py.class
 __pycache__/
 *.so
-*.pyo
-*.pyd
 .Python
 build/
 develop-eggs/
@@ -31,7 +29,6 @@ var/
 wheels/
 *.egg-info/
 .installed.cfg
-*.egg
 
 # Логи
 *.log
