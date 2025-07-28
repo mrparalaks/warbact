@@ -15,8 +15,9 @@ class State:
         '''
         self.game = game
         self.next_state: Optional['State'] = None
-        logger.debug(f'Инициилизировано состояние: {self.__class__.__name__}')
         self._update_counter = 0 # Счётчик для ограничения логирования
+        logger.debug(f'Инициализировано состояние: {self.__class__.__name__}')
+        
 
     def handle_events(self, events: List[pygame.event.Event]) -> None:
         '''
@@ -25,7 +26,6 @@ class State:
         Args:
             events: Список событий Pygame
         '''
-        logger.debug(f'Обработка событий в состоянии: {self.__class__.__name__}')
         for event in events:
             if event.type == pygame.QUIT:
                 logger.info('Получен сигнал выхода из игры')
@@ -58,7 +58,7 @@ class State:
 
     def exit(self) -> None:
         '''
-        Действие при вsходе в состояния
+        Действие при выходе из состояния
         '''
         logger.info(f'Вsход из состояние: {self.__class__.__name__}')
 

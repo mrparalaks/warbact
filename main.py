@@ -1,13 +1,7 @@
 import pygame
 import sys
 import os
-from src.core.logging_setup import setup_logging
-
-# Настройка пути для импорта
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
-# Настройка логирования
-logger = setup_logging()
+from src.core.logging_setup import setup_logging, logger
 
 def main():
     logger.info('Инициализация Pygame')
