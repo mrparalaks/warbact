@@ -91,3 +91,34 @@ class ResourceManager:
             pygame.mixer.music.load(self.music[name])
             pygame.mixer.music.play(loops)
             logger.debug(f"Воспроизводится музыка: {name}")
+
+    def load_scaled_texture(self, name: str, path: str, width: int = None, height: int = None) -> pygame.Surface:
+        """Загрузка текстуры с масштабированием"""
+        if name in self.textures:
+            return self.textures[name]
+
+        try:
+            full_path = os.path.join("assets", "textures", path)
+            texture = pygame.image.load(full_path).convert_alpha()
+
+            # Масштабируем, если указаны размеры
+            if width and height:
+                texture = pygame.transform.smoothscale(texture, (width, height))
+
+            self.textures[name] = texture
+            logger.debug(f"Загружена текстура: {name} (размер: {texture.get_width()}x{texture.get_height()})")
+            return texture
+        except Exception as e:
+            logger.error(f"Ошибка загрузки текстуры {name}: {e}")
+            # Создаём пустую поверхность как запасной вариант
+            return pygame.Surface((width or 32, height or 32))
+
+    def play_sound(self, name: str) -> None:
+        """Воспроизведение звука"""
+        if name in self.sounds:
+            try:
+                self.sounds[name].play()
+                logger.debug(f"Воспроизводится звук: {name}")
+            except Exception as e:
+                logger.error(f"Ошибка воспроизведения звука {name}: {e}")
+

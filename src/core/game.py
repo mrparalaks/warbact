@@ -14,6 +14,8 @@ class Game:
         self.running = True
         self.resource_manager = ResourceManager()
         logger.info("Инициализирован менеджер состояний")
+        pygame.mixer.init()
+        logger.info("Инициализирован микшер звука")
 
     def quit(self) -> None:
         """Завершение работы игры"""
