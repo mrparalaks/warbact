@@ -9,7 +9,20 @@ class MenuState(State):
         super().__init__(game)
         self.background = pygame.Surface((800, 600))
         self.background.fill((0, 0, 100))
-        self.font = pygame.font.SysFont('Arial', 36)
+
+        # Загружаем ресурсы
+        self.font = self.game.resource_manager.load_font(
+            "main_font", "arial.ttf", 36
+        )
+
+        # Загружаем текстуры (если есть)
+        try:
+            self.logo = self.game.resource_manager.load_texture(
+                "logo", "logo.png"
+            )
+        except:
+            self.logo = None
+
         logger.info("Инициализировано состояние MenuState")
 
     def handle_events(self, events) -> None:
@@ -22,7 +35,14 @@ class MenuState(State):
 
     def render(self, screen) -> None:
         screen.blit(self.background, (0, 0))
+
+        # Отрисовка логотипа (если загружен)
+        if self.logo:
+            screen.blit(self.logo, (300, 100))
+
+        # Отрисовка текста
         text = self.font.render("Главное меню", True, (255, 255, 255))
         screen.blit(text, (300, 250))
+
         text = self.font.render("Нажмите Enter для начала игры", True, (255, 255, 255))
         screen.blit(text, (200, 300))

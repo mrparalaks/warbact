@@ -1,6 +1,7 @@
 from typing import List, Optional
 import pygame
 from src.core.state import State
+from src.core.resource_manager import ResourceManager
 from src.core.logging_setup import logger
 
 class Game:
@@ -11,6 +12,7 @@ class Game:
         self.current_state: Optional[State] = None
         self.previous_state: Optional[State] = None
         self.running = True
+        self.resource_manager = ResourceManager()
         logger.info("Инициализирован менеджер состояний")
 
     def quit(self) -> None:
