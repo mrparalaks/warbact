@@ -60,7 +60,7 @@ class State:
         '''
         Действие при выходе из состояния
         '''
-        logger.info(f'Вsход из состояние: {self.__class__.__name__}')
+        logger.info(f'Выход из состояния: {self.__class__.__name__}')
 
     def set_next_state(self, state: 'State') -> None:
         '''
@@ -70,4 +70,4 @@ class State:
             state: Следующее состояние
         '''
         self.next_state = state
-        logger.debug(f'Устанвлено следующее состояние: {state.__class__.__name__}')
+        logger.debug(f'Установлено следующее состояние: {state.__class__.__name__}')

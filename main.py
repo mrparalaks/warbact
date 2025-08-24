@@ -1,41 +1,15 @@
-import pygame
 import sys
 import os
-from src.core.logging_setup import setup_logging, logger
+from src.core.game import Game
+from src.core.logging_setup import logger
 
-def main():
-    logger.info('Инициализация Pygame')
-    pygame.init()
+def main() -> None:
+    """Основная функция запуска игры"""
+    logger.info("Запуск игры")
+    game = Game()
+    game.run()
 
-    # Настройка окна
-    screen_width, screen_height = 800, 600
-    screen = pygame.display.set_mode((screen_width, screen_height))
-    pygame.display.set_caption('WarBact')
-
-    # Основной игровой цикл
-    clock = pygame.time.Clock()
-    running = True
-
-    logger.info('Запуск основного игрового цикла')
-    while running:
-        # Обработка событий
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                logger.info('Получен сигнал выхода')
-                running = False
-        
-        # Очистка экрана
-        screen.fill((0, 0, 0))
-
-        # Здесь будет основная логика игры
-
-        # Обновление экрана
-        pygame.display.flip()
-        clock.tick(60) # 60 FPS
-    
-    logger.info('Завершение работы Pygame')
-    pygame.quit()
-    sys.exit()
-
-if __name__ == '__main__':
+if __name__ == "__main__":
+    # Добавляем корневую папку проекта в Python path
+    sys.path.append(os.path.dirname(os.path.abspath(__file__)))
     main()
